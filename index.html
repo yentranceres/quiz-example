@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/quiz_css.css">
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h1 class="header-quiz">Quiz Question</h1>
+        <p class="des-quiz">With some built-in properties of a DOM element or window object, browsers may generate an
+            error if an attempt is made to remove the property. jQuery first assigns the value undefined to the property
+            and ignores any error the browser generates. In general, it is only necessary to remove custom properties
+            that have been set on an object, and not built-in (native) properties.</p>
+    </div>
+
+    <div class="body-quiz">
+        <div class="quiz" id="first-quiz" data-id="1">
+            <div class="question">
+                <h4 class="order-question">QUESTION 1: </h4>
+                <p class="content-question">Although the lunar landing ______, the crew managed to take some invaluable photos of the Moon's surface.</p>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios1" value="was abhorred">
+                    was abhorred
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios1" value="was aborted">
+                    was aborted
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios1" value="was accomplished">
+                    was accomplished
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios1" value="was abolished">
+                    was abolished
+                </label>
+            </div>
+        </div>
+
+        <div class="quiz" data-id="2">
+            <div class="question">
+                <h4 class="order-question">QUESTION 2: </h4>
+                <p class="content-question">If you ______ to see Mary, could you say hello to her for me.</p>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios2" value="likely">
+                    likely
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios2" value="possibly">
+                    possibly
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios2" value="happen">
+                    happen
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios2" value="might">
+                    might
+                </label>
+            </div>
+
+            <p class="text1" style="display: none">correct</p>
+            <p class="text2" style="display: none">wrong</p>
+        </div>
+
+        <div class="quiz" data-id="3">
+            <div class="question">
+                <h4 class="order-question">QUESTION 3: </h4>
+                <p class="content-question">I got a _____ box for my birthday.</p>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios3" value="white small wooden">
+                    white small wooden
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios3" value="small white wooden">
+                    small white wooden
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios3" value="small wooden white">
+                    small wooden white
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios3" value="wooden small white">
+                    wooden small white
+                </label>
+            </div>
+        </div>
+
+        <div class="quiz" data-id="4">
+            <div class="question">
+                <h4 class="order-question">QUESTION 4: </h4>
+                <p class="content-question">All the surviors have been ______ for.</p>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios4" value="dealt">
+                    dealt
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios4" value="accounted">
+                    accounted
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios4" value="found">
+                    found
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios4" value="reasoned">
+                    reasoned
+                </label>
+            </div>
+        </div>
+
+        <div class="quiz" data-id="5">
+            <div class="question">
+                <h4 class="order-question">QUESTION 5: </h4>
+                <p class="content-question">My sister really gets a ____ out of singing in public.</p>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios5" value="fun">
+                    fun
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios5" value="buzz">
+                    buzz
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios5" value="blush">
+                    blush
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input class="option" type="radio" name="optionsRadios5" value="pleasure">
+                    pleasure
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="btn-nav">
+        <a class="btn btn-info btn-lg pre-button" href="#" role="button">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            PREVIOUS
+        </a>
+
+        <a class="btn btn-info btn-lg next-button" href="#" role="button">
+            NEXT
+            <i class="glyphicon glyphicon-arrow-right"></i>
+        </a>
+
+        <a class="btn btn-success btn-lg done-button" href="#" role="button">
+            DONE
+            <i class="glyphicon glyphicon-ok"></i>
+        </a>
+    </div>
+
+</div>
+<footer>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/quiz_js.js"></script>
+</footer>
+</body>
+</html>
