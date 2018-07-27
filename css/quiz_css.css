@@ -59,3 +59,14 @@
     border: transparent;
 }
 
+#result {
+    text-align: center;
+    color: #c7254e;
+    margin: 100px;
+    font-size: 114px;
+}
+
+.again-button {
+    display: none;
+}
+

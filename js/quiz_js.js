@@ -31,47 +31,40 @@ $(document).ready(function () {
         }
     });
 
+    var correctAnswers = [
+        {
+            question: 1,
+            answer: 'was aborted'
+        },
+        {
+            question: 2,
+            answer: 'possibly'
+        },
+        {
+            question: 3,
+            answer: 'small white wooden'
+        },
+        {
+            question: 4,
+            answer: 'accounted'
+        },
+        {
+            question: 5,
+            answer: 'buzz'
+        }
+    ];
 
-    /* var correctAnswer = ['was aborted', 'possibly', 'small white wooden', 'accounted', 'buzz'];
-     var userAnswer = [];
+    var userInputs = [];
 
-     $(document).on('click', '.option', function () {
-         var choice = $(this).attr('value');
-             userAnswer.push(choice);
-         console.log(userAnswer)
-     });*/
-});
+    $(document).on('click', '.option', function () {
+        var questionID = $(this).parents('.quiz').data('id');
+        var answerID = $(this).attr('value');
+        addUserInput(questionID, answerID);
+    });
 
-var correctAnswers = [
-    {
-        question: 1,
-        answer: 'was aborted'
-    },
-    {
-        question: 2,
-        answer: 'possibly'
-    },
-    {
-        question: 3,
-        answer: 'small white wooden'
-    },
-    {
-        question: 4,
-        answer: 'accounted'
-    },
-    {
-        question: 5,
-        answer: 'buzz'
-    }
-];
-
-var userInputs = [];
-
-$(document).on('click', '.option', function () {
-    var questionID = $(this).parents('.quiz').data('id');
-    var answerID = $(this).attr('value');
-    addUserInput(questionID, answerID);
-
+    $(document).on('click', '.done-button', function () {
+        compareArray(userInputs, correctAnswers);
+    });
 
     function addUserInput(question, answer) {
         var obj = {
@@ -93,15 +86,32 @@ $(document).on('click', '.option', function () {
         }
 
 
-        if (index !== null) {
+        if (index !== null) { //update
             userInputs[index] = obj;
-            console.log('abc', index);
-        } else {
+        } else { //create
             userInputs.push(obj);
         }
     }
-console.log(userInputs);
-        function compareAnswers(correctAnswers, userInputs) {
 
+    console.log('92', userInputs);
+
+    function compareArray(userInputs, correctAnswers) {
+        var score = 0;
+
+        for (var x = 0; x < userInputs.length; x++) {
+            for (var k = 0; k < correctAnswers.length; k++) {
+                if (userInputs[x].question == correctAnswers[k].question) {
+                    if (userInputs[x].answer == correctAnswers[k].answer) {
+                        score = score + 1;
+                    }
+                    else {
+                        score = score;
+                    }
+                }
+            }
+        }
+        $('#result').append('Your score is ' + score);
+        $('.content-body').hide();
     }
 });
+
