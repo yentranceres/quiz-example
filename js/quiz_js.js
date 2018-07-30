@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-
     // When user click "Next" and "Previous"
     $(document).on('click', '.next-button', function () {
         var id = $('.quiz:visible').data('id');
@@ -28,7 +26,6 @@ $(document).ready(function () {
 
         if (preId === 1) {
             $('.pre-button').hide();
-
         }
     });
 
@@ -83,11 +80,6 @@ $(document).ready(function () {
                     + "<div class='radio'><input class='option' type='radio'  value='" + allAnswers[j].answer[2] + "'>" + allAnswers[j].answer[2] + "</div>"
                     + "<div class='radio'><input class='option' type='radio'  value='" + allAnswers[j].answer[3] + "'>" + allAnswers[j].answer[3] + "</div>"
                     + "</div>");
-                if (j == 0) {
-
-                }
-                console.log(allAnswers[j].question);
-                console.log(allAnswers[j].answer);
             }
         }
     }
@@ -136,7 +128,6 @@ $(document).ready(function () {
     //caculate score
     function compareArray(userInputs, allAnswers) {
         var score = 0;
-
         for (var x = 0; x < userInputs.length; x++) {
             for (var k = 0; k < allAnswers.length; k++) {
 
@@ -153,8 +144,6 @@ $(document).ready(function () {
         }
         $('#result').append('Your score is ' + score);
         $('.content-body').hide();
-
-        console.log(score);
     }
 });
 
