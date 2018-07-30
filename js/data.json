@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Although the lunar landing ______, the crew managed to take some invaluable photos of the Moon's surface.",
+    "answer": ["was abhorred","was aborted","was accomplished","was abolished"],
+    "correct": "was aborted"
+  },
+  {
+    "question": "If you ______ to see Mary, could you say hello to her for me.",
+    "answer": ["likely", "possibly", "happen","might"],
+    "correct": "possibly"
+  },
+  {
+    "question": "I got a _____ box for my birthday.",
+    "answer": ["white small wooden", "small white wooden", "small wooden white","wooden small white"],
+    "correct": "small white wooden"
+  },
+  {
+    "question": "All the surviors have been ______ for.",
+    "answer": ["dealt", "accounted", "found", "reasoned"]
+    "correct": "accounted"
+  },
+  {
+    "question": "My sister really gets a ____ out of singing in public.",
+    "answer": ["fun", "buzz", "blush", "pleasure"]
+    "correct": "buzz"
+  }
+];
