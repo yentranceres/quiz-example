@@ -31,72 +31,43 @@ $(document).ready(function () {
 
     var userInputs = [];
 
-    var allAnswers = [
-        {
-            "question": "Although the lunar landing ______, the crew managed to take some invaluable photos of the Moon's surface.",
-            "answer": ["was abhorred", "was aborted", "was accomplished", "was abolished"],
-            "correct": "was aborted",
-            "id": 1
-        },
-        {
-            "question": "If you ______ to see Mary, could you say hello to her for me.",
-            "answer": ["likely", "possibly", "happen", "might"],
-            "correct": "possibly",
-            "id": 2
-        },
-        {
-            "question": "I got a _____ box for my birthday.",
-            "answer": ["white small wooden", "small white wooden", "small wooden white", "wooden small white"],
-            "correct": "small white wooden",
-            "id": 3
-        },
-        {
-            "question": "All the surviors have been ______ for.",
-            "answer": ["dealt", "accounted", "found", "reasoned"],
-            "correct": "accounted",
-            "id": 4
-        },
-        {
-            "question": "My sister really gets a ____ out of singing in public.",
-            "answer": ["fun", "buzz", "blush", "pleasure"],
-            "correct": "buzz",
-            "id": 5
-        }
-    ];
-    getQuestion(allAnswers);
-
     //Show question
+    $.getJSON('js/data.json', function (data) {
+        getQuestion(data);
+        console.log(data);
+
+        //Choice question and answer
+        $(document).on('click', '.option', function () {
+            var questionID = $(this).parents('.quiz').data('id');
+            var answerID = $(this).attr('value');
+            addUserInput(questionID, answerID, data);
+        });
+
+        //submit answer
+        $(document).on('click', '.done-button', function () {
+            compareArray(userInputs, data);
+        });
+    });
+
     function getQuestion(allAnswers) {
         var nId;
 
         if (allAnswers) { //check presence of allAnswer
-            for (j = 0; j < allAnswers.length; j++) {
+            for (j = 0; j < allAnswers.length; j++) { console.log(allAnswers.length);
                 nId = j + 1;
-                $('.body-quiz').append(
-                    "<div class='quiz " + (nId == 1 ? 'first' : '') + "' data-id='" + nId + "'>"
-                    + "<div class='question'><h4>" + allAnswers[j].question + "</h4></div>"
-                    + "<div class='radio'><input class='option' type='radio'  value='" + allAnswers[j].answer[0] + "'>" + allAnswers[j].answer[0] + "</div>"
-                    + "<div class='radio'><input class='option' type='radio'  value='" + allAnswers[j].answer[1] + "'>" + allAnswers[j].answer[1] + "</div>"
-                    + "<div class='radio'><input class='option' type='radio'  value='" + allAnswers[j].answer[2] + "'>" + allAnswers[j].answer[2] + "</div>"
-                    + "<div class='radio'><input class='option' type='radio'  value='" + allAnswers[j].answer[3] + "'>" + allAnswers[j].answer[3] + "</div>"
-                    + "</div>");
+                    $('.body-quiz').append(
+                        "<div class='quiz " + (nId == 1 ? 'first' : '') + "' data-id='" + nId + "'>"
+                        + "<div class='question'><h4>" + allAnswers[j].question + "</h4></div>"
+                        + "<div class='radio'><input class='option' type='radio' name='optionsradio " + nId +"' value='" + allAnswers[j].answer[0] + "'>" + allAnswers[j].answer[0] + "</div>"
+                        + "<div class='radio'><input class='option' type='radio' name='optionsradio " + nId +"' value='" + allAnswers[j].answer[1] + "'>" + allAnswers[j].answer[1] + "</div>"
+                        + "<div class='radio'><input class='option' type='radio' name='optionsradio " + nId +"' value='" + allAnswers[j].answer[2] + "'>" + allAnswers[j].answer[2] + "</div>"
+                        + "<div class='radio'><input class='option' type='radio' name='optionsradio " + nId +"' value='" + allAnswers[j].answer[3] + "'>" + allAnswers[j].answer[3] + "</div>"
+                        + "</div>");
             }
         }
     }
 
-    //Choice question and answer
-    $(document).on('click', '.option', function () {
-        var questionID = $(this).parents('.quiz').data('id');
-        var answerID = $(this).attr('value');
-        addUserInput(questionID, answerID);
-    });
-
-    //submit answer
-    $(document).on('click', '.done-button', function () {
-        compareArray(userInputs, allAnswers);
-    });
-
-    function addUserInput(question, answer) {
+    function addUserInput(question, answer, allAnswers) {
         var obj = {
             question: question,
             answer: answer
