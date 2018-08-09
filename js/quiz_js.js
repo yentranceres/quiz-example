@@ -14,31 +14,50 @@ $(document).ready(function () {
             var questionNumber = $(this).parents('.content-body').find('.active').data('id');
             var answerNumber = $("input[name='optionsradio" + currentId + "']:checked").val();
 
-            buttonPrevious();
+            buttonNext();
 
-            checkAnswer(questionNumber, answerNumber, currentId, data);
-
+            //check answer
+            if (answerNumber == undefined) {
+                noAnswer(questionNumber, answerNumber, currentId, data);
+            } else {
+                hasAnswer(questionNumber, answerNumber, currentId, data);
+            }
+            removeTheSameAnswer(currentId, missAnswer, userInputs);
         });
 
         $(document).on('click', '.pre-button', function () {
-            buttonNext();
+            buttonPrevious();
         });
 
-        $(document).on('click', '.done-button', function (data) {
+        $(document).on('click', '.done-button', function () {
             var currentId = $('.quiz:visible').data('id');
-            var firstIndex = missAnswer[0];
             var questionNumber = $(this).parents('.content-body').find('.active').data('id');
             var answerNumber = $("input[name='optionsradio" + currentId + "']:checked").val();
 
-            checkAnswer(questionNumber, answerNumber, currentId, data);
-            $('[data-id="' + firstIndex + '"]').show();
-            $('[data-id="' + currentId + '"]').hide();
 
-            buttonPrevious();
+            //check answer
+            if (answerNumber == undefined) {
+                noAnswer(questionNumber, answerNumber, currentId, data);
+            } else {
+                hasAnswer(questionNumber, answerNumber, currentId, data);
+            }
+            removeTheSameAnswer(currentId, missAnswer, userInputs);
+
+            if (missAnswer.length == 0) {
+                compareArray(userInputs, data);
+            }
+            else {
+                var firstIndex = missAnswer[0].id; console.log(firstIndex);
+
+                $('[data-id="' + firstIndex + '"]').show();
+           //     $('[data-id="' + currentId + '"]').hide();
+            }
+
             buttonNext();
-
-            compareArray(userInputs, data);
+            buttonPrevious();
         });
+
+
     });
 
 
@@ -62,12 +81,9 @@ $(document).ready(function () {
         }
     }
 
-    function buttonPrevious() {
+    function buttonNext() {
         var currentId = $('.quiz:visible').data('id');
         var nextId = $('.quiz:visible').data('id') + 1;
-        var preId = $('.quiz:visible').data('id') - 1;
-        console.log(preId);
-        console.log(nextId);
 
         $('[data-id="' + currentId + '"]').hide().removeClass('active');
         $('[data-id="' + nextId + '"]').show().addClass('active');
@@ -80,13 +96,14 @@ $(document).ready(function () {
         }
     }
 
-    function buttonNext() {
+    function buttonPrevious() {
         var currentId = $('.quiz:visible').data('id');
         var preId = $('.quiz:visible').data('id') - 1;
 
         $('[data-id="' + currentId + '"]').hide().removeClass('active');
         $('[data-id="' + preId + '"]').show().addClass('active');
         $('.done-button').hide();
+        $('.result-button').hide();
         $('.next-button').show();
 
         if (preId == 1) {
@@ -94,8 +111,7 @@ $(document).ready(function () {
         }
     }
 
-
-    function checkAnswer(question, answer, id, allAnswers) {
+    function hasAnswer(question, answer, id, allAnswers) {
         var obj = {
             question: question,
             answer: answer,
@@ -116,13 +132,46 @@ $(document).ready(function () {
         }
 
         if (index == null) { //update
-            if (obj.answer == undefined) {
-                missAnswer.push(obj.id);
-            } else {
-                userInputs.push(obj);
-            }
+            userInputs.push(obj);
         } else { //create
             userInputs[index] = obj;
+        }
+    }
+
+    function noAnswer(question, answer, id, allAnswers) {
+        var obj = {
+            question: question,
+            answer: answer,
+            id: id
+        };
+
+        //check question has been stored ?????
+        var index = null;
+
+        for (var w = 0; w < allAnswers.length; w++) {
+            if (missAnswer[w] == undefined) {
+                continue;
+            }
+
+            if (missAnswer[w].question == obj.question) {
+                index = w;
+            }
+        }
+
+        if (index == null) { //update
+            missAnswer.push(obj);
+        } else { //create
+            missAnswer[index] = obj;
+        }
+    }
+
+    function removeTheSameAnswer(id, missAnswer, userInputs) {
+        for (var f = 0; f < userInputs.length; f++) {
+            for (var d = 0; d < missAnswer.length; d++) {
+                if (userInputs[f].id == missAnswer[d].id) {
+                    missAnswer.splice(0, 1);
+                }
+            }
         }
     }
 

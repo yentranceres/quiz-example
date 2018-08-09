@@ -67,4 +67,11 @@
     font-size: 114px;
 }
 
+.result {
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px;
+    display: none;
+}
+
 
