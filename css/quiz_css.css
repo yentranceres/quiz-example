@@ -60,10 +60,10 @@
     border: transparent;
 }
 
-#result {
+.total-score {
     text-align: center;
     color: #c7254e;
-    margin: 100px;
+    margin: 50px;
     font-size: 114px;
 }
 
@@ -73,5 +73,27 @@
     padding: 5px;
     display: none;
 }
+
+#result-correct {
+    font-weight: bold;
+    color: #2e6da4;
+
+}
+
+.total-correctAnswer, .content-answer {
+    font-weight: bold;
+    color: #2e6da4;
+    text-align: center;
+
+}
+
+.total-score, .total-correctAnswer, .content-answer {
+    display: none;
+}
+
+.content-answer {
+    font-size: large;
+}
+
 
 

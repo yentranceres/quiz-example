@@ -30,12 +30,12 @@ $(document).ready(function () {
         });
 
         $(document).on('click', '.done-button', function () {
-            var currentId = $('.quiz:visible').data('id');
+            var currentId = $('.active').data('id');
             var questionNumber = $(this).parents('.content-body').find('.active').data('id');
             var answerNumber = $("input[name='optionsradio" + currentId + "']:checked").val();
 
-
             //check answer
+
             if (answerNumber == undefined) {
                 noAnswer(questionNumber, answerNumber, currentId, data);
             } else {
@@ -43,21 +43,14 @@ $(document).ready(function () {
             }
             removeTheSameAnswer(currentId, missAnswer, userInputs);
 
-            if (missAnswer.length == 0) {
-                compareArray(userInputs, data);
+            //back to question does not have answer
+            if (missAnswer.length === 0) {
+                compareArray(questionNumber, answerNumber, userInputs, data);
             }
             else {
-                var firstIndex = missAnswer[0].id; console.log(firstIndex);
-
-                $('[data-id="' + firstIndex + '"]').show();
-           //     $('[data-id="' + currentId + '"]').hide();
+                backToQuestion();
             }
-
-            buttonNext();
-            buttonPrevious();
         });
-
-
     });
 
 
@@ -118,6 +111,8 @@ $(document).ready(function () {
             id: id
         };
 
+        var currentId = $('.active').data('id');
+
         //check question has been stored ?????
         var index = null;
 
@@ -131,9 +126,9 @@ $(document).ready(function () {
             }
         }
 
-        if (index == null) { //update
+        if (index == null) { //create
             userInputs.push(obj);
-        } else { //create
+        } else { //update
             userInputs[index] = obj;
         }
     }
@@ -158,9 +153,9 @@ $(document).ready(function () {
             }
         }
 
-        if (index == null) { //update
+        if (index == null) { //create
             missAnswer.push(obj);
-        } else { //create
+        } else { //update
             missAnswer[index] = obj;
         }
     }
@@ -175,23 +170,42 @@ $(document).ready(function () {
         }
     }
 
-    function compareArray(userInputs, allAnswers) {
+    function compareArray(question, answer, userInputs, allAnswers) {
         var score = 0;
+
         for (var x = 0; x < userInputs.length; x++) {
             for (var k = 0; k < allAnswers.length; k++) {
 
                 if (userInputs[x].question == allAnswers[k].id) {
                     if (userInputs[x].answer == allAnswers[k].correct) {
                         score = score + 1;
-                    }
-                    else {
+                        $(".total-correctAnswer").append(+ allAnswers[k].id + "." + allAnswers[k].correct + "<br>").show();
+                        }
+                    } else {
                         score = score;
                     }
                 }
             }
+            $(".total-score").append(score).show();
+            $('.content-body').hide();
+    }
+
+    function backToQuestion() {
+        var currentId = $('.active').data('id');
+        var firstIndex = missAnswer[0].id;
+
+        if (firstIndex != 5) {
+            alert("You are missing something");
+            $('[data-id="' + firstIndex + '"]').show();
+            $('[data-id="' + currentId + '"]').hide();
+            $('.done-button').hide();
+            $('.next-button').show();
+
         }
-        $('#result').append('Your score is ' + score);
-        $('.content-body').hide();
+        else {
+            $('[data-id="' + firstIndex + '"]').show();
+            $('.next-button').hide();
+        }
     }
 
 });
