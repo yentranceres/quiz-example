@@ -9,14 +9,6 @@
 
 <body>
 <div class="container content-body">
-    <div class="header">
-        <h1 class="header-quiz">Quiz Question</h1>
-        <p class="des-quiz">With some built-in properties of a DOM element or window object, browsers may generate an
-            error if an attempt is made to remove the property. jQuery first assigns the value undefined to the property
-            and ignores any error the browser generates. In general, it is only necessary to remove custom properties
-            that have been set on an object, and not built-in (native) properties.</p>
-    </div>
-
     <div class="body-quiz"></div>
 
     <div class="btn-nav">
@@ -47,12 +39,10 @@
 
 </div>
 
-
-</div>
 <footer>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/quiz_js.js"></script>
+    <script src="js/general.js"></script>
 </footer>
 </body>
 </html>

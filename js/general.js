@@ -1,10 +1,8 @@
 $(document).ready(function () {
     var userInputs = [];
-    console.log(userInputs);
     var missAnswer = [];
-    console.log(missAnswer);
 
-    $.getJSON('js/data.json', function (data) {
+    $.getJSON('/quizquestion/data.php', function (data) {
         getQuestion(data); //show question html
 
 
@@ -53,7 +51,6 @@ $(document).ready(function () {
         });
     });
 
-
     <!-- all Functions -->
 
     function getQuestion(allAnswers) {
@@ -65,10 +62,10 @@ $(document).ready(function () {
                 $('.body-quiz').append(
                     "<div class='quiz " + (nId == 1 ? 'first active' : '') + "' data-id='" + nId + "'>"
                     + "<div class='question'><h4>" + allAnswers[j].question + "</h4></div>"
-                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='" + allAnswers[j].answer[0] + "'>" + allAnswers[j].answer[0] + "</div>"
-                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='" + allAnswers[j].answer[1] + "'>" + allAnswers[j].answer[1] + "</div>"
-                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='" + allAnswers[j].answer[2] + "'>" + allAnswers[j].answer[2] + "</div>"
-                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='" + allAnswers[j].answer[3] + "'>" + allAnswers[j].answer[3] + "</div>"
+                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='a'>" + allAnswers[j].answer1 + "</div>"
+                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='b'>" + allAnswers[j].answer2 + "</div>"
+                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='c'>" + allAnswers[j].answer3 + "</div>"
+                    + "<div class='radio'><input class='option' type='radio' name='optionsradio" + nId + "' value='d'>" + allAnswers[j].answer4 + "</div>"
                     + "</div>");
             }
         }
@@ -177,9 +174,9 @@ $(document).ready(function () {
             for (var k = 0; k < allAnswers.length; k++) {
 
                 if (userInputs[x].question == allAnswers[k].id) {
-                    if (userInputs[x].answer == allAnswers[k].correct) {
+                    if (userInputs[x].answer == allAnswers[k].correct_answer) {
                         score = score + 1;
-                        $(".total-correctAnswer").append(+ allAnswers[k].id + "." + allAnswers[k].correct + "<br>").show();
+                        $(".total-correctAnswer").append(+ allAnswers[k].id + "." + allAnswers[k].correct_answer + "<br>").show();
                         }
                     } else {
                         score = score;
