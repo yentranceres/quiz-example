@@ -1,14 +1,29 @@
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname   = "quizexample";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+//Fetch from listquestion
+$result = $conn->query("SELECT * FROM listquestion");
+
+//Initialize array variable
+$data = array();
+
+//Fetch into associative array
+while ( $row = $result->fetch_assoc())  {
+    $data[]=$row;
+}
 //Sumbit Form
-include('data.php');
 $question = '';
 $answer1 = '';
 $answer2 = '';
 $answer3 = '';
 $answer4 = '';
 $correct_answer = '';
-
-
 
 if (count($_POST)) {
     $valid = false;
@@ -28,7 +43,6 @@ if (count($_POST)) {
             //sql
             $sql = "INSERT INTO listquestion (question, answer1, answer2, answer3, answer4, correct_answer ) 
                     VALUES ('$question','$answer1', '$answer2', '$answer3', '$answer4', '$correct_answer')";
-            var_dump($sql);
 
             //execute
             if ($conn->query($sql) === TRUE) {
@@ -44,5 +58,4 @@ if (count($_POST)) {
 }
 //Close connection
 $conn->close();
-
 ?>

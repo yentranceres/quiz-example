@@ -2,7 +2,6 @@ $(document).ready(function () {
     $(document).on('click', '.start-button', function () {
         if (validateForm() == true) {
             $('.form-horizontal').submit();
-            $('.urlquiz').show();
         }
     });
 

@@ -154,7 +154,7 @@ body {
 }
 
 .data-table {
-    margin: 0px 182px;
+    margin: 0px 0px 40px 182px;
 }
 
 table, th, td {
@@ -194,6 +194,4 @@ th {
 td {
     background: #eeeeee;
 }
-
-
 

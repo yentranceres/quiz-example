@@ -1,21 +1,3 @@
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname   = "quizexample";
-
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-if ($conn -> connect_error){
-    die("connection failed:". $conn -> connect_error);
-}
-
-$sql = "SELECT id, question from listquestion";
-$result = $conn ->query($sql);
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,41 +8,73 @@ $result = $conn ->query($sql);
 </head>
 
 <body>
+<?php   include "delete.php"; ?>
 <div class="container table-body">
     <h1 class="header-table">QUESTION DATABASE</h1>
+
+    <form action='question_table.php' method='post' class='hidden db-table'>
+        <input type='hidden' value='' name='id'>
+    </form>
+
     <table class="data-table">
-        <thead>
+        <tbody>
         <tr>
             <th class="id-column">ID</th>
             <th class="question-column">QUESTION</th>
             <th class="action-column" colspan="2">ACTION</th>
         </tr>
-        <tr>
-            <?php
-            if ($result -> num_rows > 0) {
-                while ($row = $result -> fetch_assoc()) {
-                    echo "<tr>
+        <?php
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo "
+                       <tr>
                             <td>" . $row["id"] . "</td>
                             <td>" . $row["question"] . "</td>
-                            <td><div class='delete-row'>
-                                <a href='#'><i class='glyphicon glyphicon-edit edit-button' ></i></a>
-                            </div></td>
-                            <td><a href='#'><i class='glyphicon glyphicon-trash delete-button' href='#'></i></a></td>
-                          </tr>";
-                }
-                echo "</table>";
-            } else {
-                echo "0 result";
+                            <td>
+                                <a class='update-button' id='" . $row["id"] . "'  href='update_table.php?id=" . $row["id"] . "'><i class='glyphicon glyphicon-edit edit-button' ></i></a>
+                            </td>
+                            <td>
+                                <a class='remove-button' id='" . $row["id"] . "' href='#' data-toggle='modal' data-target='#myModal'><i class='glyphicon glyphicon-trash delete-button' ></i></a>
+                            </td>
+                              
+                        </tr>";
             }
+            echo "</table>";
+        } else {
+            echo "0 result";
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
 
-            $conn ->close();
-            ?>
 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true"></span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-delete" data-todo-id="">Delete</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer>
- <script src="js/question_table.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/question_table.js"></script>
 </footer>
+
 </body>
 
 

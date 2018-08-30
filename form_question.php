@@ -11,6 +11,7 @@
 <?php include('submit.php') ?>
 <div class="container form-body">
     <h1 class="title-add">ADD NEW QUESTION</h1>
+
     <form action="form_question.php" method="post" class="form-horizontal">
         <div class="question-input">
             <div class="row">
@@ -102,7 +103,8 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/general.js"></script>
-    <script src="js/validation_form.js"></script>
+    <script src="js/validation_submit.js"></script>
+
 
 </footer>
 </body>
