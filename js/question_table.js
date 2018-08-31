@@ -14,6 +14,10 @@ $(document).ready(function () {
         $('#myModal').modal('hide')
     });
 
+    $(document).on('click','.update-button', function () {
+
+    });
+
     $(document).on('click', '.update-btn', function () {
         $('.form1').submit();
     });

@@ -22,13 +22,13 @@ $answer3 = '';
 $answer4 = '';
 $correct_answer = '';
 
-if (isset($_GET['id'])) {
-    if (isset($_GET["id"])) {
-        $id = $_GET['id'];
 
-        $query = "SELECT $id FROM listquestion";
-        $result = mysqli_query($conn, $query);
-    }
+if (isset($_GET["id"])) {
+    $id = $_GET['id'];
+
+    $query = "SELECT $id FROM listquestion";
+    $result = mysqli_query($conn, $query);
+
     if (isset($_POST['submit'])) {
         if (isset($_POST["question"])) {
             $question = $_POST['question'];

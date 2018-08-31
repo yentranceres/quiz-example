@@ -25,14 +25,11 @@ $result = $conn->query($sql);
 <div class="container form-body">
     <form name="form1" method="post" action="update.php?flag=1&id=<?= $_REQUEST['id'] ?>">
         <?php
-        if (isset($_GET['id'])) {
-            if (isset($_GET["id"])) {
-
-                $id = $_GET['id'];
-
-                while ($row = $result->fetch_assoc()) {
-                    if ($id == $row['id']) {
-                        echo "
+        if (isset($_GET["id"])) {
+            $id = $_GET['id'];
+            while ($row = $result->fetch_assoc()) {
+                if ($id == $row['id']) {
+                    echo "
                             <div>
                                 <h4> Question </h4>
                                 <textarea class='form-control text-question' rows='4' name='question' required>" . $row['question'] . "</textarea>
@@ -52,7 +49,7 @@ $result = $conn->query($sql);
                             
                             <div>
                                 <h4>Answer3:</h4>
-                                <input type='text' class='form-control' id='answer3' name='answer1' placeholder='Answer' value='" . $row["answer3"] . "' required>
+                                <input type='text' class='form-control' id='answer3' name='answer3' placeholder='Answer' value='" . $row["answer3"] . "' required>
                                 <input class='checkbox-radio' type='radio' name='radioanswer' value='c' required> Check me if this is a correctly answer
                             </div>
                             
@@ -66,7 +63,6 @@ $result = $conn->query($sql);
                                 <input class='btn btn-success btn-lg update-btn' type='submit' name='submit' value='UPDATE'>
                             </div>
                             ";
-                    }
                 }
             }
         }
